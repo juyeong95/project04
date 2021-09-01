@@ -21,12 +21,14 @@ public class Main {
 				jy.display();
 				break;
 			case 2: 
-				skh.display();
+				
 				break;
 			case 3: 
 				ji.start();
 				break;
-			case 4: break;
+			case 4: 
+				skh.display();
+				break;
 			case 5: break;
 			case 6: System.exit(0);
 			}

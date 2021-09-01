@@ -14,6 +14,37 @@ public class JiheeStudent {
 	String name,stNum,add;
 	int age;
 	File filepath;
+		
+		public void fileout() {
+			try{
+				FileOutputStream fos = new FileOutputStream(filepath);
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				ObjectOutputStream oos = new ObjectOutputStream(bos);
+				
+				oos.writeObject(j);
+				oos.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void fileIn() {
+	
+			try {
+			FileInputStream fis = new FileInputStream(filepath);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			JiheeStudentDTO a = (JiheeStudentDTO)ois.readObject();
+			System.out.println("학번: " + a.getStNum());
+			System.out.println("이름: " + a.getName());
+			System.out.println("주소: " + a.getAdd());
+			System.out.println("나이: " + a.getAge());
+			System.out.println("=======================");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 	
 	public void start() {
@@ -46,17 +77,7 @@ public class JiheeStudent {
 			System.out.print("나이입력: ");
 			j.setAge(sc.nextInt());
 			
-			
-			try{
-				FileOutputStream fos = new FileOutputStream(filepath);
-				BufferedOutputStream bos = new BufferedOutputStream(fos);
-				ObjectOutputStream oos = new ObjectOutputStream(bos);
-				
-				oos.writeObject(j);
-				oos.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
+			fileout();
 			break;
 		case 2: 
 			System.out.println("=======(목록보기)=======");
@@ -68,21 +89,7 @@ public class JiheeStudent {
 			filepath = new File(p.path3 + "/" + stNum + ".txt");
 			if(filepath.isFile()) {
 				System.out.println("====(개인정보 불러오기)====");
-				
-				try {
-				FileInputStream fis = new FileInputStream(filepath);
-				BufferedInputStream bis = new BufferedInputStream(fis);
-				ObjectInputStream ois = new ObjectInputStream(bis);
-				
-				JiheeStudentDTO a = (JiheeStudentDTO)ois.readObject();
-				System.out.println("학번: " + a.getStNum());
-				System.out.println("이름: " + a.getName());
-				System.out.println("주소: " + a.getAdd());
-				System.out.println("나이: " + a.getAge());
-				System.out.println("=======================");
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				fileIn();
 				
 			}else {
 				System.out.println("존재하는 학번이 없습니다.");
@@ -120,7 +127,30 @@ public class JiheeStudent {
 				
 			}
 			break;
-		case 5: break;
+		case 5: 
+			System.out.println("=======(수정하기)=======");
+			System.out.println("수정할 학번을 입력하세요.");
+			System.out.print("학번입력: ");
+			j.setStNum(sc.next());
+			filepath = new File(p.path3 + "/" + j.getStNum() + ".txt");
+			if(filepath.isFile()) {
+				System.out.print("이름을 입력하세요 >>>");
+				j.setName(sc.next());
+				System.out.print("주소을 입력하세요 >>>");
+				j.setAdd(sc.next());
+				System.out.print("나이을 입력하세요 >>>");
+				j.setAge(sc.nextInt());
+				
+				
+				fileout();
+				fileIn();
+				System.out.println("수정되었습니다.");
+				
+			}else {
+				System.out.println("등록되지 않은 학번입니다.");
+			}
+			
+			break;
 		case 6: 
 			System.out.println("========(종료)========");
 			System.out.println("프로그램을 종료합니다.");
