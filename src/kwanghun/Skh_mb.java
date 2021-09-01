@@ -23,13 +23,17 @@ public class Skh_mb {
 		
 		case 1 : 
 			
+			
+			
 			System.out.println("학번을 입력하세요");
 			stNum = input.next();
-			st.setStNum(stNum);
+			
+			
 			System.out.println("이름을 입력하세요");
 			name = input.next();
-			st.setName(name);
 			
+			st.setStNum(stNum);
+			st.setName(name);
 			fileout();
 			filein();
 			
