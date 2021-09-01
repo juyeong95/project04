@@ -1,6 +1,13 @@
 package juyeong;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import main.FilePath;
@@ -13,6 +20,7 @@ public class Student{
 		File filep;
 		int num;
 		StDTO st = new StDTO();
+		ArrayList<StDTO> list = new ArrayList();
 		while(true) {
 			System.out.println("1.등록 2.검색 3.수정 4.삭제 5.나가기");
 			System.out.print(">>>");
@@ -23,7 +31,9 @@ public class Student{
 				boolean bool = true;
 				while(bool) {
 					System.out.println("학번 입력: ");
-					st.setStNum(input.next());
+					//st.setStNum(input.next());
+					String stNum=input.next();
+					st.setStNum(stNum);
 					filep=new File(path+"/"+st.getStNum()+".txt");
 					if(filep.isFile()) {
 						System.out.println("이미 존재하는 학번 입니다.");
@@ -37,6 +47,7 @@ public class Student{
 				st.setAge(input.nextInt());
 				System.out.println("전공 입력: ");
 				st.setMajor(input.next());
+				System.out.println("저장이 완료되었습니다.");
 				
 					try {
 						FileOutputStream fos = new FileOutputStream(filep);
@@ -56,7 +67,7 @@ public class Student{
 				num=input.nextInt();
 				switch(num) {
 				case 1:
-					
+					System.out.println("미구현 기능입니다.");
 					break;
 				case 2:
 					System.out.println("검색할 학번 입력: ");
