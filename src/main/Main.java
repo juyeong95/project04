@@ -1,9 +1,11 @@
 package main;
 
 import java.util.Scanner;
+import jihee.JiheeStudent;
 
 public class Main {
 	public static void main(String[] args) {
+		JiheeStudent ji = new JiheeStudent();
 		Scanner input = new Scanner(System.in);
 		int num;
 		while(true) {
@@ -12,7 +14,9 @@ public class Main {
 			switch(num) {
 			case 1: break;
 			case 2: break;
-			case 3: break;
+			case 3: 
+				ji.start();
+				break;
 			case 4: break;
 			case 5: break;
 			case 6: System.exit(0);
