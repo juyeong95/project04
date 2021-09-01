@@ -58,9 +58,11 @@ public class JiheeStudent {
 				e.printStackTrace();
 			}
 			break;
-		case 2: break;
+		case 2: 
+			System.out.println("=======(목록보기)=======");
+			break;
 		case 3:
-			System.out.println("======(검색하기)======");
+			System.out.println("=======(검색하기)=======");
 			System.out.print("학번입력: ");
 			String stNum = sc.next();
 			filepath = new File(p.path3 + "/" + stNum + ".txt");
@@ -87,12 +89,42 @@ public class JiheeStudent {
 			}
 			
 			break;
-		case 4: break;
+		case 4:
+			System.out.println("=======(삭제하기)=======");
+			System.out.println("삭제 할 학번을 입력하세요.");			
+			System.out.print("학번입력: ");
+			String stNum1 = sc.next();
+			filepath = new File(p.path3 + "/" + stNum1 + ".txt");
+			if(filepath.isFile()) {
+				System.out.println("==(아래 내용을 삭제 합니다)==");
+				try {
+					FileInputStream fis = new FileInputStream(filepath);
+					BufferedInputStream bis = new BufferedInputStream(fis);
+					ObjectInputStream ois = new ObjectInputStream(bis);
+					
+					JiheeStudentDTO a = (JiheeStudentDTO)ois.readObject();
+					System.out.println("학번: " + a.getStNum());
+					System.out.println("이름: " + a.getName());
+					System.out.println("주소: " + a.getAdd());
+					System.out.println("나이: " + a.getAge());
+					System.out.println("=======================");
+					
+					ois.close();
+					bis.close();
+					fis.close();
+					filepath.delete();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				
+				
+			}
+			break;
 		case 5: break;
 		case 6: 
-			System.out.println("======(종료)======");
+			System.out.println("========(종료)========");
 			System.out.println("프로그램을 종료합니다.");
-			System.out.println("=================");
+			System.out.println("=====================");
 			return;
 		}
 		}
