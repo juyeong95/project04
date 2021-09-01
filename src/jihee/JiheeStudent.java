@@ -13,7 +13,7 @@ public class JiheeStudent {
 	ArrayList<JiheeStudentDTO> list = new ArrayList<>();
 	String name,stNum,add;
 	int age;
-	File filepath; 
+	File filepath;
 	
 	
 	public void start() {
@@ -65,7 +65,7 @@ public class JiheeStudent {
 			String stNum = sc.next();
 			filepath = new File(p.path3 + "/" + stNum + ".txt");
 			if(filepath.isFile()) {
-				System.out.println("======(개인정보 불러오기)======");
+				System.out.println("====(개인정보 불러오기)====");
 				
 				try {
 				FileInputStream fis = new FileInputStream(filepath);
@@ -77,7 +77,7 @@ public class JiheeStudent {
 				System.out.println("이름: " + a.getName());
 				System.out.println("주소: " + a.getAdd());
 				System.out.println("나이: " + a.getAge());
-				System.out.println("============================");
+				System.out.println("=======================");
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -89,7 +89,11 @@ public class JiheeStudent {
 			break;
 		case 4: break;
 		case 5: break;
-		case 6: return;
+		case 6: 
+			System.out.println("======(종료)======");
+			System.out.println("프로그램을 종료합니다.");
+			System.out.println("=================");
+			return;
 		}
 		}
 		
