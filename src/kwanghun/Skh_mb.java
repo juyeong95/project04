@@ -14,19 +14,28 @@ public class Skh_mb {
 	String name = null;
 	Student st = new Student();
 	
+	
 	public void display() {
 		while(true) {
-		System.out.println("1.등록 2.학생검색 3.종료");
+		System.out.println("1.등록 2.학생검색 3.수정 4.삭제 5.종료");
 		int num = input.nextInt();
 		
 		switch(num) {
 		
 		case 1 : 
 			
-			
+			while(true) {
 			
 			System.out.println("학번을 입력하세요");
 			stNum = input.next();
+			File file01 = new File(file.path4+"/"+stNum+".txt");
+			if(file01.isFile()) {
+				System.out.println("이미 등록된 학번입니다.");
+			} else {
+				break;
+			}
+			}
+			
 			
 			
 			System.out.println("이름을 입력하세요");
@@ -35,18 +44,56 @@ public class Skh_mb {
 			st.setStNum(stNum);
 			st.setName(name);
 			fileout();
-			filein();
+			System.out.println("저장되었습니다.");
 			
 			break;
 		case 2 : 
 			
 			System.out.println("검색할 학번을 입력하세요");
 			stNum = input.next();
+			File file01 = new File(file.path4+"/"+stNum+".txt");
+			if(file01.isFile()) {
+				
+				filein();
+				
+			} else {
+				System.out.println("등록되지 않은 학번입니다.");
+			}
 			
-			filein();
 			
 			break;
-		case 3 : System.out.println("프로그램을 종료합니다."); return;
+			
+		case 3 :
+			
+			System.out.println("검색할 학번을 입력하세요");
+			stNum = input.next();
+			file01 = new File(file.path4+"/"+stNum+".txt");
+			if(file01.isFile()) {
+				System.out.println("이름을 입력하세요");
+				name = input.next();
+				
+				st.setStNum(stNum);
+				st.setName(name);
+				fileout();
+				System.out.println("수정되었습니다.");
+			} else {
+				System.out.println("등록되지 않은 학번입니다.");
+			}
+			break;
+		case 4 :
+			System.out.println("삭제할 학번을 입력하세요");
+			stNum = input.next();
+			file01 = new File(file.path4+"/"+stNum+".txt");
+			if(file01.isFile()) {
+				
+				file01.delete();
+				System.out.println(stNum+" 삭제되었습니다.");
+			} else {
+				System.out.println("등록되지 않은 학번입니다.");
+			}
+			
+			break;
+		case 5 : System.out.println("프로그램을 종료합니다."); return;
 		
 		}
 	}
